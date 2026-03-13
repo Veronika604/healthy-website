@@ -1,0 +1,117 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Профиль | Veronika_health</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<section class="section fade-in">
+  <h2>Ваш план на сегодня</h2>
+
+  <div class="card fade-in">
+    <h3>Меню дня</h3>
+    <p>Завтрак: Овсянка с ягодами — 320 ккал</p>
+    <p>Обед: Боул с киноа — 450 ккал</p>
+    <p>Ужин: Запечённые овощи — 280 ккал</p>
+  </div>
+
+  <div class="card fade-in">
+    <h3>Тренировки</h3>
+    <ul>
+      <li><input type="checkbox"> Утренняя зарядка 10 мин</li>
+      <li><input type="checkbox"> Прогулка 30 мин</li>
+      <li><input type="checkbox"> Лёгкое кардио 20 мин</li>
+      <li><input type="checkbox"> Растяжка 15 мин</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Профиль | Veronika_health</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="profile-page">
+<header class="topbar">
+  <div class="logo">Veronika_health</div>
+  <div class="nav-buttons">
+    <a href="menu.html" class="back-btn">Изменить меню</a>
+  </div>
+</header>
+
+<section class="section fade-in">
+  <h2>Ваш план на сегодня</h2>
+
+  <!-- Меню дня -->
+<div class="card fade-in profile-card" id="profile-menu">
+  <h3>Меню дня</h3>
+</div>
+
+<!-- Тренировки -->
+<div class="card fade-in profile-card">
+  <h3>Тренировки</h3>
+  <ul>
+    <li><input type="checkbox"> Утренняя зарядка 10 мин</li>
+    <li><input type="checkbox"> Прогулка 30 мин</li>
+    <li><input type="checkbox"> Лёгкое кардио 20 мин</li>
+    <li><input type="checkbox"> Растяжка 15 мин</li>
+  </ul>
+</div>
+
+</section>
+
+<script>
+// ---------- МЕНЮ (тот же массив, что в меню страницы) ----------
+const menus = [
+  [
+    {meal: "Завтрак", name:"Овсянка с ягодами", kcal:320, protein:10, fat:6, carbs:55, img:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092"},
+    {meal: "Обед", name:"Боул с киноа", kcal:450, protein:15, fat:12, carbs:65, img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
+    {meal: "Ужин", name:"Запечённые овощи", kcal:280, protein:6, fat:10, carbs:40, img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"}
+  ],
+  [
+    {meal: "Завтрак", name:"Смузи боул", kcal:310, protein:8, fat:5, carbs:50, img:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38"},
+    {meal: "Обед", name:"Салат с нутом", kcal:420, protein:18, fat:14, carbs:52, img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd"},
+    {meal: "Ужин", name:"Тофу с овощами", kcal:300, protein:20, fat:10, carbs:30, img:"https://images.unsplash.com/photo-1617196035503-8e618a0e70d1"}
+  ],
+  [
+    {meal: "Завтрак", name:"Йогурт с фруктами", kcal:290, protein:12, fat:4, carbs:48, img:"https://images.unsplash.com/photo-1598300052647-3bb6d7e28985"},
+    {meal: "Обед", name:"Куриный салат", kcal:480, protein:30, fat:18, carbs:40, img:"https://images.unsplash.com/photo-1604908177526-07aa66fcb8b2"},
+    {meal: "Ужин", name:"Рататуй", kcal:310, protein:8, fat:12, carbs:35, img:"https://images.unsplash.com/photo-1600891963921-3b18f80db56e"}
+  ],
+  [
+    {meal: "Завтрак", name:"Авокадо-тост", kcal:350, protein:10, fat:20, carbs:30, img:"https://images.unsplash.com/photo-1550304943-60c0ee9633f2"},
+    {meal: "Обед", name:"Лосось с киноа", kcal:500, protein:35, fat:20, carbs:40, img:"https://images.unsplash.com/photo-1617196035647-1234567890ab"},
+    {meal: "Ужин", name:"Суп-пюре из тыквы", kcal:260, protein:6, fat:8, carbs:38, img:"https://images.unsplash.com/photo-1600891963999-3c20f80db56e"}
+  ]
+];
+
+// ---------- Получаем выбранное меню ----------
+let currentMenu = localStorage.getItem("currentMenu");
+currentMenu = currentMenu ? parseInt(currentMenu) : 0;
+
+// ---------- Отображение меню ----------
+function showProfileMenu() {
+  const container = document.getElementById("profile-menu");
+  container.innerHTML = "<h3>Меню дня</h3>"; // очистка
+
+  menus[currentMenu].forEach(item => {
+    const p = document.createElement("p");
+    p.innerText = `${item.meal}: ${item.name} — ${item.kcal} ккал (Б:${item.protein}г, Ж:${item.fat}г, У:${item.carbs}г)`;
+    container.appendChild(p);
+  });
+}
+
+// ---------- Запуск ----------
+document.addEventListener("DOMContentLoaded", () => {
+  showProfileMenu();
+});
+</script>
+
+</body>
+</html>
